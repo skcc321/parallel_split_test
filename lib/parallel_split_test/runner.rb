@@ -9,6 +9,8 @@ module ParallelSplitTest
     def self.run(args, err=$stderr, out=$stdout)
       trap_interrupt
 
+      eval(File.read(".coverage.rb")) if File.exist?(".coverage.rb")
+
       report_execution_time(out) do
         ParallelSplitTest::CommandLine.new(args).run(err, out)
       end
